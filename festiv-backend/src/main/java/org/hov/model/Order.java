@@ -1,6 +1,5 @@
 package org.hov.model;
 
-import java.security.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,13 +16,11 @@ public class Order
 	private int orderId;
 	
 	@Column
-	private String orderStatus;
+	private String orderStatus; // Convert to ENUM, Constants -> INITATED, PREPARED, DELIVERED, RETURNED
 	private int orderQuantity;
-	private Timestamp orderConfirmedTime;
 	private int userId;
 	private int teamId;
-	private String transactionId;
-	private boolean orderExpired;
+	private int paymentId;
 	
 	public int getOrderId() 
 	{
@@ -55,16 +52,6 @@ public class Order
 		this.teamId = teamId;
 	}
 	
-	public String getTransactionId() 
-	{
-		return transactionId;
-	}
-	
-	public void setTransactionId(String transactionId) 
-	{
-		this.transactionId = transactionId;
-	}
-	
 	public String getOrderStatus() 
 	{
 		return orderStatus;
@@ -85,23 +72,13 @@ public class Order
 		this.orderQuantity = orderQuantity;
 	}
 
-	public Timestamp getOrderConfirmedTime() 
+	public int getPaymentId() 
 	{
-		return orderConfirmedTime;
+		return paymentId;
 	}
 
-	public void setOrderConfirmedTime(Timestamp orderConfirmedTime) 
+	public void setPaymentId(int paymentId) 
 	{
-		this.orderConfirmedTime = orderConfirmedTime;
-	}		
-	
-	public boolean isOrderExpired() 
-	{
-		return orderExpired;
-	}
-
-	public void setOrderExpired(boolean orderExpired) 
-	{
-		this.orderExpired = orderExpired;
+		this.paymentId = paymentId;
 	}
 }

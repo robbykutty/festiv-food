@@ -19,8 +19,8 @@ public class Item
 	private int teamId;
 	private String itemName;
 	private String itemDescription;
-	private String item;
-	private float itemPrice;
+	private Double itemPrice;
+	private int itemQuantity;
 	private int itemPreparationTime;
 	private boolean expired;
 	private boolean blocked;
@@ -65,26 +65,6 @@ public class Item
 		this.itemDescription = itemDescription;
 	}
 	
-	public String getItem() 
-	{
-		return item;
-	}
-	
-	public void setItem(String item) 
-	{
-		this.item = item;
-	}
-	
-	public float getItemPrice() 
-	{
-		return itemPrice;
-	}
-	
-	public void setItemPrice(float itemPrice) 
-	{
-		this.itemPrice = itemPrice;
-	}
-	
 	public int getItemPreparationTime() 
 	{
 		return itemPreparationTime;
@@ -114,5 +94,24 @@ public class Item
 	{
 		this.blocked = blocked;
 	}
-	
+
+	public Double getItemPrice() 
+	{
+		return itemPrice;
+	}
+
+	public void setItemPrice(Double itemPrice) 
+	{
+		this.itemPrice = itemPrice;
+	}
+
+	public int getItemQuantity() 
+	{
+		return itemQuantity;
+	}
+
+	public void setItemQuantity(int itemQuantity) 
+	{
+		this.itemQuantity = itemQuantity;
+	}
 }

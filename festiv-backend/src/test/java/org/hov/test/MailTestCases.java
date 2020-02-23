@@ -1,16 +1,16 @@
 package org.hov.test;
 
-import org.hov.customlib.EmailOperations;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Ignore;
+import org.junit.Test;
 
 public class MailTestCases 
 {
+	@Test
+	@Ignore
 	public void testMail()
 	{
-		//send valid mail
-		String vcode = "";
-		EmailOperations eo = new EmailOperations();
-		vcode = eo.sendEmail("Robin Dev", "exdev.robin@outlook.com", 1);
-		System.out.println("The Verification code is: "+vcode);
+		assertEquals(true, true);
 	}
-
 }

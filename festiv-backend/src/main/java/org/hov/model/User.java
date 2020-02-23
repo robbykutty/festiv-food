@@ -21,9 +21,12 @@ public class User
 	private String userPassword;
 	private String firstName;
 	private String lastName;
-	private String authority;
+	private String authority; //To be changed to Enumeration, Constants-> BUYER, SELLER, ADMIN.
+	private String verificationCode;
+	private boolean verified;
 	private boolean blocked;
-	
+	private boolean suspended;
+
 	public int getTeamId() 
 	{
 		return teamId;
@@ -102,5 +105,35 @@ public class User
 	public void setBlocked(boolean blocked) 
 	{
 		this.blocked = blocked;
+	}
+
+	public boolean isSuspended() 
+	{
+		return suspended;
+	}
+
+	public void setSuspended(boolean suspended) 
+	{
+		this.suspended = suspended;
+	}
+
+	public boolean isVerified() 
+	{
+		return verified;
+	}
+
+	public void setVerified(boolean verified) 
+	{
+		this.verified = verified;
+	}
+
+	public String getVerificationCode() 
+	{
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) 
+	{
+		this.verificationCode = verificationCode;
 	}
 }

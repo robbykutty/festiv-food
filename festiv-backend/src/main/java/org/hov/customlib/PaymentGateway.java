@@ -2,33 +2,31 @@ package org.hov.customlib;
 
 public class PaymentGateway 
 {
-	PaymentGateway()
-	{
-		String transactionId = ""; 
-		//transactionId = createTransaction();
-	}
-	
-	public boolean paymentByInstaMojo()
+	//Pay with InstaMojo Gateway
+	public boolean payByInstaMojo()
 	{	
 		try
 		{
-			//instaMojo Logic
-
-			//if (updateTransactionStatusSuccessById(transactionId))
-			if(true)
-			{
-				return true;
-			}
-			else
-			{
-				return false;	
-			}
+			return true;
 		}
 		catch(Exception e)
 		{
-			System.out.println("Exception---<-This exception is hidden for security reasons");
+			e.printStackTrace();
 			return false;
 		}
-		
+	}	
+	
+	//Pay with PayTM Gateway
+	public boolean payByPayTM()
+	{	
+		try
+		{
+			return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

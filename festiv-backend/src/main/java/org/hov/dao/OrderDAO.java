@@ -7,10 +7,9 @@ import org.hov.model.Order;
 public interface OrderDAO 
 {
 	public int addOrder(Order order);
+	public boolean updateOrder(Order order);
 	public List<Order> getAllOrder();
-	public List<Order> getOrderByUser(int userid);
-	public List<Order> getOrderByTeam(int teamid);
+	public List<Order> getOrderByUser(int userId);
+	public List<Order> getOrderByTeam(int teamId);
 	public Order getOrderById(int orderId);
-	public boolean updateOrderById(int OrderId);
-	public boolean expireOrderById(int orderId);
 }
