@@ -1,6 +1,7 @@
 package org.hov.daoimpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Query;
 
@@ -20,7 +21,7 @@ public class ItemDAOImpl implements ItemDAO
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public int addItem(Item item) 
+	public UUID addItem(Item item) 
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -35,7 +36,7 @@ public class ItemDAOImpl implements ItemDAO
 		{
 			e.printStackTrace();
 			tx.rollback();
-			return 0;
+			return null;
 		}
 		finally
 		{

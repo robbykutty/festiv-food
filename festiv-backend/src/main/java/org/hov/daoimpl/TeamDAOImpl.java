@@ -1,5 +1,7 @@
 package org.hov.daoimpl;
 
+import java.util.UUID;
+
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
@@ -18,7 +20,7 @@ public class TeamDAOImpl implements TeamDAO
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public int addTeam(Team team) 
+	public UUID addTeam(Team team) 
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -33,7 +35,7 @@ public class TeamDAOImpl implements TeamDAO
 		{
 			e.printStackTrace();
 			tx.rollback();
-			return 0;
+			return null;
 		}
 		finally
 		{

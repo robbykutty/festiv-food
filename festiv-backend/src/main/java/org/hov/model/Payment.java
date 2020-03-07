@@ -1,39 +1,56 @@
 package org.hov.model;
 
 import java.security.Timestamp;
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table (name="Payments")
 public class Payment 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int paymentId;
+	@GeneratedValue
+	private UUID paymentId;
 	
 	@Column
+	@NotNull
 	private int orderId;
+	
+	@Column
+	@NotBlank
 	private String paymentStatus; //To be changed to Enumeration, Constants-> INITIATED, PAID, REFUNDED, EXPIRED
+	
+	@Column
 	private String paymentInfo;
+	
+	@Column
 	private String paymentPass;
+
+	@Column
+	@NotNull
 	private Timestamp paymentExpiry;
+
+	@Column
+	@NotNull
 	private Timestamp paymentDate;
 	
-	public int getPaymentId() 
+	public UUID getPaymentId() 
 	{
 		return paymentId;
 	}
-	
-	public void setPaymentId(int paymentId) 
+
+	public void setPaymentId(UUID paymentId) 
 	{
 		this.paymentId = paymentId;
 	}
-	
+
 	public int getOrderId() 
 	{
 		return orderId;

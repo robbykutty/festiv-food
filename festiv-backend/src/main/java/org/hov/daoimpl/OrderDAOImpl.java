@@ -1,6 +1,7 @@
 package org.hov.daoimpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -19,7 +20,7 @@ public class OrderDAOImpl implements OrderDAO
 {
 	@Autowired
 	SessionFactory sessionFactory;
-	public int addOrder(Order order) 
+	public UUID addOrder(Order order) 
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -34,7 +35,7 @@ public class OrderDAOImpl implements OrderDAO
 		{
 			e.printStackTrace();
 			tx.rollback();
-			return 0;
+			return null;
 		}
 		finally
 		{
@@ -116,7 +117,7 @@ public class OrderDAOImpl implements OrderDAO
 		try
 		{
 			Session session = sessionFactory.getCurrentSession();
-			Query query = session.createQuery("from org.hov.model.Order where userId = :id");
+			Query query = session.createQuery("from org.hov.model.Order where orderId = :id");
 			query.setParameter("id", orderId);
 			return (Order)query.getResultList().get(0);
 		}

@@ -1,5 +1,7 @@
 package org.hov.serviceimpl;
 
+import java.util.UUID;
+
 import org.hov.dao.TeamDAO;
 import org.hov.model.Team;
 import org.hov.service.TeamService;
@@ -13,7 +15,7 @@ public class TeamServiceImpl implements TeamService
 	TeamDAO teamDAO;	//TeamDAOImpl Wired
 	
 	@Override
-	public int addTeam(Team team) 
+	public UUID addTeam(Team team) 
 	{
 		return teamDAO.addTeam(team);
 	}

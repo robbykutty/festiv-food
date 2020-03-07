@@ -1,6 +1,8 @@
 package org.hov.daoimpl;
 
 import java.util.List;
+import java.util.UUID;
+
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import org.hibernate.Session;
@@ -79,7 +81,7 @@ public class UserDAOImpl implements UserDAO
 		}
 	}
 
-	public User getUserById(int userId) 
+	public User getUserById(UUID userId) 
 	{
 		try
 		{
@@ -112,7 +114,7 @@ public class UserDAOImpl implements UserDAO
 		}
 	}
 
-	public boolean blockUserById(int userId) 
+	public boolean blockUserById(UUID userId) 
 	{
 		try
 		{
@@ -134,7 +136,7 @@ public class UserDAOImpl implements UserDAO
 		}
 	}
 
-	public boolean unblockUserById(int userId) 
+	public boolean unblockUserById(UUID userId) 
 	{
 		try
 		{
@@ -156,7 +158,7 @@ public class UserDAOImpl implements UserDAO
 		}
 	}
 
-	public boolean suspendUserById(int userId) 
+	public boolean suspendUserById(UUID userId) 
 	{
 		try
 		{

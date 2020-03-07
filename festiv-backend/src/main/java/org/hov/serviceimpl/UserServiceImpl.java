@@ -1,6 +1,7 @@
 package org.hov.serviceimpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hov.dao.UserDAO;
 import org.hov.model.User;
@@ -33,7 +34,7 @@ public class UserServiceImpl implements UserService
 	}
 	
 	@Override
-	public User getUserById(int userId) 
+	public User getUserById(UUID userId) 
 	{
 		return userDAO.getUserById(userId);
 	}
@@ -45,19 +46,19 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public boolean blockUserById(int userId) 
+	public boolean blockUserById(UUID userId) 
 	{
 		return userDAO.blockUserById(userId);
 	}
 
 	@Override
-	public boolean unblockUserById(int userId) 
+	public boolean unblockUserById(UUID userId) 
 	{
 		return userDAO.unblockUserById(userId);
 	}
 
 	@Override
-	public boolean suspendUserById(int userId) 
+	public boolean suspendUserById(UUID userId) 
 	{
 		return userDAO.suspendUserById(userId);
 	}

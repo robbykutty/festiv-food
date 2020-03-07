@@ -1,6 +1,7 @@
 package org.hov.serviceimpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hov.dao.OrderDAO;
 import org.hov.model.Order;
@@ -15,7 +16,7 @@ public class OrderServiceImpl implements OrderService
 	OrderDAO orderDAO;
 
 	@Override
-	public int addOrder(Order order) 
+	public UUID addOrder(Order order) 
 	{
 		return orderDAO.addOrder(order);
 	}

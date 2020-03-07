@@ -1,6 +1,5 @@
 package org.hov.test;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -14,6 +13,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -24,11 +24,19 @@ public class UserTestCases
 	@Autowired
 	UserService userService;
 	
-/*  CREATION TEST CASES  */
+	User targetUser;
+	
+	/*  CREATION TEST CASES  */
+	
+	@BeforeTestMethod
+	public void getTargetUser()
+	{
+		targetUser = userService.getUserByEmail("testing@foodieff.com");
+	}
 	
 	@Test
 	@Ignore
-	public void addUserValid1()	//Valid Record
+	public void addUserValid1()	
 	{
 		User user = new User();
 		user.setFirstName("Tester123");
@@ -54,10 +62,10 @@ public class UserTestCases
 	 */
 	
 
-/*  RETRIEVE TEST CASES  */
+	/*  RETRIEVE TEST CASES  */
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void displayAllUserListValid()
 	{
 		List<User> userlist = userService.getAllUsers();
@@ -81,9 +89,9 @@ public class UserTestCases
 
 	@Test
 	@Ignore
-	public void displayUserbyIdValid1()	//User 5
+	public void displayUserbyIdValid1()	
 	{
-		User u = userService.getUserById(5);
+		User u = userService.getUserById(targetUser.getUserId());
 
 		System.out.println("--------------------------");
 		System.out.println(u.getUserId());
@@ -103,17 +111,17 @@ public class UserTestCases
 	
 	@Test
 	@Ignore
-	public void displayUserbyIdInvalid1()	//User -999
+	public void displayUserbyIdInvalid1()	//Expired
 	{
-		assertNull(userService.getUserById(-1));
+		assertNull(userService.getUserById(targetUser.getUserId()));
 	}
 	
 
 	@Test
 	@Ignore
-	public void displayUserbyEmailValid1()	//Valid Email
+	public void displayUserbyEmailValid1()	
 	{
-		User u = userService.getUserByEmail("user123@foodie.com");
+		User u = userService.getUserByEmail("testing@foodieff.com");
 
 		System.out.println("--------------------------");
 		System.out.println(u.getUserId());
@@ -134,18 +142,18 @@ public class UserTestCases
 
 	@Test
 	@Ignore
-	public void displayUserbyEmailInvalid1()	//Invalid Email
+	public void getUserbyEmailInvalid1()	
 	{	
 		assertNull(userService.getUserByEmail("x323535xxy3434y5454yzzz@foodie.com"));
 	}
 
-/*  UPDATION TEST CASES  */
+	/*  UPDATION TEST CASES  */
 	
 	@Test
 	@Ignore
-	public void updateUserValid1()	// Update User Id 11
+	public void updateUserValid1()	// 
 	{
-		User u = userService.getUserById(11);
+		User u = userService.getUserById(targetUser.getUserId());
 		
 		u.setFirstName("Updated UserName1");
 		
@@ -153,28 +161,28 @@ public class UserTestCases
 	}
 	
 
-/*  SUB-UPDATION TEST CASES  */
+	/*  SUB-UPDATION TEST CASES  */
 
 	@Test
 	@Ignore
-	public void blockUserValid()	// Id = 5
+	public void blockUserValid()	
 	{
-		assertEquals(true, userService.blockUserById(5));
+		assertEquals(true, userService.blockUserById(targetUser.getUserId()));
 	}
 	
 
 	@Test
 	@Ignore
-	public void unblockUserValid()	// Id = 5
+	public void unblockUserValid()
 	{
-		assertEquals(true, userService.unblockUserById(5));
+		assertEquals(true, userService.unblockUserById(targetUser.getUserId()));
 	}
 	
 
 	@Test
 	@Ignore
-	public void suspendUserValid()	// Id = 5
+	public void suspendUserValid()	
 	{
-		assertEquals(true, userService.suspendUserById(5));
+		assertEquals(true, userService.suspendUserById(targetUser.getUserId()));
 	}
 }

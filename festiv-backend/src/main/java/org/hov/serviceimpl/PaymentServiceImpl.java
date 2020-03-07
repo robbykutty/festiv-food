@@ -1,6 +1,7 @@
 package org.hov.serviceimpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hov.model.Payment;
 import org.hov.service.PaymentService;
@@ -14,7 +15,7 @@ public class PaymentServiceImpl implements PaymentService
 	PaymentService paymentService;
 	
 	@Override
-	public int createPaymentTransaction(Payment payment) 
+	public UUID createPaymentTransaction(Payment payment) 
 	{
 		return paymentService.createPaymentTransaction(payment);
 	}

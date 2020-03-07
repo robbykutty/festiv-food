@@ -1,6 +1,7 @@
 package org.hov.serviceimpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hov.dao.ItemDAO;
 import org.hov.model.Item;
@@ -15,7 +16,7 @@ public class ItemServiceImpl implements ItemService
 	ItemDAO itemDAO;	//ItemDAOImpl Wired
 	
 	@Override
-	public int addItem(Item item) 
+	public UUID addItem(Item item) 
 	{
 		return itemDAO.addItem(item);
 	}

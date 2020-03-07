@@ -1,6 +1,8 @@
 package org.hov.daoimpl;
 
 import java.util.List;
+import java.util.UUID;
+
 import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +20,7 @@ public class PaymentDAOImpl implements PaymentDAO
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public int createPaymentTransaction(Payment payment)
+	public UUID createPaymentTransaction(Payment payment)
 	{
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -33,7 +35,7 @@ public class PaymentDAOImpl implements PaymentDAO
 		{
 			e.printStackTrace();
 			tx.rollback();
-			return 0;
+			return null;
 		}
 		finally
 		{
