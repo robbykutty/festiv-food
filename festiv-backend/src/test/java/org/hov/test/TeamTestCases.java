@@ -3,10 +3,12 @@ package org.hov.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import java.util.UUID;
+
 import org.hov.config.AppConfig;
-import org.hov.daoimpl.TeamDAOImpl;
 import org.hov.model.Team;
 import org.hov.service.TeamService;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +22,14 @@ public class TeamTestCases
 {
 	@Autowired
 	TeamService teamService;
+	
+	Team targetTeam;
+	
+	@Before
+	public void getTargetTeam()
+	{
+		targetTeam = teamService.getTeamById(UUID.fromString("822987d6-9c2c-4856-9686-d963cdec76e1"));
+	}
 	
 	@Test
 	@Ignore
@@ -38,16 +48,15 @@ public class TeamTestCases
 	@Ignore
 	public void updateTeam()
 	{
-		Team team = teamService.getTeamById(2);
-		team.setTeamDescription("Updated Team Description");
-		assertEquals(true, teamService.updateTeam(team));
+		targetTeam.setTeamDescription("Updated Team Description");
+		assertEquals(true, teamService.updateTeam(targetTeam));
 	}
 
 	@Test
 	@Ignore
 	public void displayTeamById()
 	{
-		Team tm = teamService.getTeamById(2);
+		Team tm = targetTeam;
 		
 		System.out.println("------------------------------------");
 		System.out.println("Team Id: " + tm.getTeamId());
@@ -60,13 +69,13 @@ public class TeamTestCases
 	@Ignore
 	public void activateTeam()
 	{
-		teamService.activateTeamById(2);
+		teamService.activateTeamById(targetTeam.getTeamId());
 	}
 
 	@Test
 	@Ignore
 	public void deactivateTeam()
 	{
-		teamService.deactivateTeamById(2);
+		teamService.deactivateTeamById(targetTeam.getTeamId());
 	}
 }

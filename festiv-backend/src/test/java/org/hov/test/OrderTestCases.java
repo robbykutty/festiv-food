@@ -4,10 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hov.config.AppConfig;
+import org.hov.enumerators.OrderStatus;
 import org.hov.model.Order;
 import org.hov.service.OrderService;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +25,18 @@ public class OrderTestCases
 	@Autowired
 	OrderService orderService;
 	
+	Order targetOrder;
+	
+	UUID targetUUID;
+	
 	/*  CREATION TEST CASES  */
+	
+	@Before
+	public void getTargetOrder()
+	{
+		targetUUID = UUID.randomUUID();
+		targetOrder = orderService.getAllOrder().get(0);
+	}
 	
 	@Test
 	@Ignore
@@ -30,11 +44,11 @@ public class OrderTestCases
 	{
 		Order order = new Order();
 	
-		order.setUserId(3);
-		order.setTeamId(2);
-		order.setPaymentId(3);
-		order.setOrderQuantity(1);
-		order.setOrderStatus("DELIVERED");
+		order.setUserId(targetUUID);
+		order.setTeamId(targetUUID);
+		order.setPaymentId(targetUUID);
+		order.setOrderQuantity(4);
+		order.setOrderStatus(OrderStatus.INITATED);
 		
 		assertNotEquals(0, orderService.addOrder(order));
 	}
@@ -45,10 +59,10 @@ public class OrderTestCases
 	@Ignore
 	public void updateOrder()
 	{
-		Order order = orderService.getOrderById(5);
-		order.setOrderStatus("PAID");
-		order.setUserId(2);
-		order.setTeamId(2);
+		Order order = targetOrder;
+		order.setOrderStatus(OrderStatus.DELIVERED);
+		order.setUserId(targetUUID);
+		order.setTeamId(targetUUID);
 		
 		assertEquals(true, orderService.updateOrder(order));
 	}
@@ -78,7 +92,7 @@ public class OrderTestCases
 	@Ignore
 	public void displayOrderByUser()
 	{
-		List<Order> orderList = orderService.getOrderByUser(3);
+		List<Order> orderList = orderService.getOrderByUser(targetUUID);
 		
 		for(Order odr: orderList)
 		{
@@ -97,7 +111,7 @@ public class OrderTestCases
 	@Ignore
 	public void displayOrderByTeam()
 	{
-		List<Order> orderList = orderService.getOrderByTeam(2);
+		List<Order> orderList = orderService.getOrderByTeam(targetUUID);
 		
 		for(Order odr: orderList)
 		{
@@ -116,7 +130,7 @@ public class OrderTestCases
 	@Ignore
 	public void displayOrderById()
 	{
-		Order odr = orderService.getOrderById(5);
+		Order odr = orderService.getOrderById(targetOrder.getOrderId());
 		if (odr != null)
 		{
 			System.out.println("-------------------------");

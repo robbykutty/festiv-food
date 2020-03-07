@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,15 +13,19 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
+import org.hov.enumerators.Authority;
 
 @Entity
 @Table (name="Users")
 public class User 
 {
+
 	@Id
 	@GeneratedValue
+	@Type(type = "uuid-char")
 	private UUID userId;
 	
 	@Column(updatable = false)
@@ -41,7 +47,7 @@ public class User
 	@Column
 	@NotBlank
 	@Length(min = 2, max = 16, message = "Must be atleast 6-12 characters long")
-	@Pattern(regexp="", message="Did not meet password requirement")
+	//@Pattern(regexp="", message="Did not meet password requirement")
 	private String userPassword;
 	
 	@Column
@@ -62,7 +68,8 @@ public class User
 
 	@NotBlank
 	@Column
-	private String authority; //To be changed to Enumeration, Constants-> BUYER, SELLER, ADMIN.
+	@Enumerated(EnumType.STRING)
+	private Authority authority;
 	
 	@NotBlank
 	@Column(length = 6)
@@ -140,12 +147,12 @@ public class User
 		this.lastName = lastName;
 	}
 	
-	public String getAuthority() 
+	public Authority getAuthority() 
 	{
 		return authority;
 	}
 	
-	public void setAuthority(String authority) 
+	public void setAuthority(Authority authority) 
 	{
 		this.authority = authority;
 	}

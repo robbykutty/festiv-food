@@ -10,10 +10,10 @@ public interface ItemDAO
 	public UUID addItem(Item item);
 	public List<Item> getAllItems();
 	public List<Item> getActiveItems();
-	public List<Item> getItemByTeam(int teamId);
-	public Item getItemById(int itemId);
+	public List<Item> getItemByTeam(UUID teamId);
+	public Item getItemById(UUID itemId);
 	public boolean updateItem(Item item);
-	public boolean blockItemById(int itemId);
-	public boolean unblockItemById(int itemId);
-	public boolean expireItemById(int itemId);
+	public boolean blockItemById(UUID itemId);
+	public boolean unblockItemById(UUID itemId);
+	public boolean expireItemById(UUID itemId);
 }

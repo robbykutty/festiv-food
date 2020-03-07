@@ -66,7 +66,7 @@ public class TeamDAOImpl implements TeamDAO
 		}
 	}
 	
-	public Team getTeamById(int teamId) 
+	public Team getTeamById(UUID teamId) 
 	{
 		try
 		{
@@ -82,7 +82,7 @@ public class TeamDAOImpl implements TeamDAO
 		}
 	}
 
-	public boolean activateTeamById(int teamId) 
+	public boolean activateTeamById(UUID teamId) 
 	{
 		try
 		{
@@ -97,7 +97,7 @@ public class TeamDAOImpl implements TeamDAO
 		}
 	}
 	
-	public boolean deactivateTeamById(int teamId) 
+	public boolean deactivateTeamById(UUID teamId) 
 	{
 		try
 		{

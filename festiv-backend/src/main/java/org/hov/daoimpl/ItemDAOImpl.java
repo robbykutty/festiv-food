@@ -95,7 +95,7 @@ public class ItemDAOImpl implements ItemDAO
 		}
 	}
 
-	public List<Item> getItemByTeam(int teamId) 
+	public List<Item> getItemByTeam(UUID teamId) 
 	{
 		try
 		{
@@ -111,7 +111,7 @@ public class ItemDAOImpl implements ItemDAO
 		}
 	}
 
-	public Item getItemById(int itemId)
+	public Item getItemById(UUID itemId)
 	{
 		try
 		{
@@ -127,7 +127,7 @@ public class ItemDAOImpl implements ItemDAO
 		}
 	}
 
-	public boolean blockItemById(int itemId) 
+	public boolean blockItemById(UUID itemId) 
 	{
 		Item item = getItemById(itemId);
 		item.setBlocked(true);
@@ -141,7 +141,7 @@ public class ItemDAOImpl implements ItemDAO
 		}
 	}
 
-	public boolean unblockItemById(int itemId) 
+	public boolean unblockItemById(UUID itemId) 
 	{
 		Item item = getItemById(itemId);
 		item.setBlocked(false);
@@ -155,7 +155,7 @@ public class ItemDAOImpl implements ItemDAO
 		}
 	}
 
-	public boolean expireItemById(int itemId) 
+	public boolean expireItemById(UUID itemId) 
 	{
 		Item item = getItemById(itemId);
 		item.setExpired(true);

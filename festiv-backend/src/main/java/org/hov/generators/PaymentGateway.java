@@ -1,4 +1,4 @@
-package org.hov.customlib;
+package org.hov.generators;
 
 public class PaymentGateway 
 {

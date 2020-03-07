@@ -4,10 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hov.config.AppConfig;
 import org.hov.model.Item;
 import org.hov.service.ItemService;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +24,15 @@ public class ItemTestCases
 	@Autowired
 	ItemService itemService;
 	
-	/*  CREATION TEST CASES  */
+	Item targetItem;
+
+	@Before
+	public void getTargetItems()
+	{
+		targetItem = itemService.getItemById(UUID.fromString("e0fa4374-f9a3-4eaf-95de-c19cfa0219e3"));
+	}
 	
+	/*  CREATION TEST CASES  */
 	@Test
 	@Ignore
 	public void addItemValid()
@@ -48,9 +57,8 @@ public class ItemTestCases
 	@Ignore
 	public void updateItemValid()
 	{
-		Item item = itemService.getItemById(4);
-		item.setItemName("Name Updated!");
-		assertEquals(true, itemService.updateItem(item));
+		targetItem.setItemName("Name Updated!");
+		assertEquals(true, itemService.updateItem(targetItem));
 	}
 
 	/*  RETRIEVE TEST CASES  */
@@ -79,7 +87,7 @@ public class ItemTestCases
 	@Ignore
 	public void displayItemByTeamValid()
 	{
-		List<Item> itemList = itemService.getItemByTeam(2);
+		List<Item> itemList = itemService.getItemByTeam(UUID.fromString(""));
 		for(Item itm:itemList)
 		{
 			System.out.println("------------------------------------");
@@ -99,7 +107,7 @@ public class ItemTestCases
 	@Ignore
 	public void displayItemByIdValid()
 	{
-		Item itm = itemService.getItemById(3);
+		Item itm = itemService.getItemById(targetItem.getItemId());
 		if(itm != null)
 		{
 			System.out.println("------------------------------------");
@@ -122,20 +130,20 @@ public class ItemTestCases
 	@Ignore
 	public void blockItemValid()
 	{
-		itemService.blockItemById(1);
+		itemService.blockItemById(targetItem.getItemId());
 	}
 	
 	@Test
 	@Ignore
 	public void unblockItemValid()
 	{
-		itemService.unblockItemById(1);
+		itemService.unblockItemById(targetItem.getItemId());
 	}
 	
 	@Test
 	@Ignore
 	public void expireItemValid()
 	{
-		itemService.expireItemById(4);
+		itemService.expireItemById(targetItem.getItemId());
 	}	
 }

@@ -4,13 +4,17 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Range;
+import org.hov.enumerators.OrderStatus;
 
 @Entity
 @Table (name="Orders")
@@ -18,11 +22,13 @@ public class Order
 {
 	@Id
 	@GeneratedValue
+	@Type(type = "uuid-char")
 	private UUID orderId;
 	
 	@Column
 	@NotBlank
-	private String orderStatus; // Convert to ENUM, Constants -> INITATED, PREPARED, DELIVERED, RETURNED
+	@Enumerated(EnumType.STRING)
+	private OrderStatus orderStatus;
 	
 	@Column
 	@NotNull
@@ -31,16 +37,16 @@ public class Order
 	private int orderQuantity;
 	
 	@Column
-	@NotNull
-	private int userId;
+	//@NotNull
+	private UUID userId;
 	
 	@Column
-	@NotNull
-	private int teamId;
+	//@NotNull
+	private UUID teamId;
 	
 	@Column
-	@NotNull
-	private int paymentId;
+	//@NotNull
+	private UUID paymentId;
 	
 	public UUID getOrderId() 
 	{
@@ -52,32 +58,32 @@ public class Order
 		this.orderId = orderId;
 	}
 
-	public int getUserId() 
+	public UUID getUserId() 
 	{
 		return userId;
 	}
 	
-	public void setUserId(int userId) 
+	public void setUserId(UUID userId) 
 	{
 		this.userId = userId;
 	}
 	
-	public int getTeamId() 
+	public UUID getTeamId() 
 	{
 		return teamId;
 	}
 	
-	public void setTeamId(int teamId) 
+	public void setTeamId(UUID teamId) 
 	{
 		this.teamId = teamId;
 	}
 	
-	public String getOrderStatus() 
+	public OrderStatus getOrderStatus() 
 	{
 		return orderStatus;
 	}
 	
-	public void setOrderStatus(String orderStatus) 
+	public void setOrderStatus(OrderStatus orderStatus) 
 	{
 		this.orderStatus = orderStatus;
 	}
@@ -92,12 +98,12 @@ public class Order
 		this.orderQuantity = orderQuantity;
 	}
 
-	public int getPaymentId() 
+	public UUID getPaymentId() 
 	{
 		return paymentId;
 	}
 
-	public void setPaymentId(int paymentId) 
+	public void setPaymentId(UUID paymentId) 
 	{
 		this.paymentId = paymentId;
 	}

@@ -5,11 +5,16 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Type;
+import org.hov.enumerators.PaymentStatus;
 
 @Entity
 @Table (name="Payments")
@@ -17,6 +22,7 @@ public class Payment
 {
 	@Id
 	@GeneratedValue
+	@Type(type = "uuid-char")
 	private UUID paymentId;
 	
 	@Column
@@ -25,7 +31,8 @@ public class Payment
 	
 	@Column
 	@NotBlank
-	private String paymentStatus; //To be changed to Enumeration, Constants-> INITIATED, PAID, REFUNDED, EXPIRED
+	@Enumerated(EnumType.STRING)
+	private PaymentStatus paymentStatus;
 	
 	@Column
 	private String paymentInfo;
@@ -61,12 +68,12 @@ public class Payment
 		this.orderId = orderId;
 	}
 
-	public String getPaymentStatus() 
+	public PaymentStatus getPaymentStatus() 
 	{
 		return paymentStatus;
 	}
 	
-	public void setPaymentStatus(String paymentStatus) 
+	public void setPaymentStatus(PaymentStatus paymentStatus) 
 	{
 		this.paymentStatus = paymentStatus;
 	}

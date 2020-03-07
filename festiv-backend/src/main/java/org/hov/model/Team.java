@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -18,6 +19,7 @@ public class Team
 {
 	@Id
 	@GeneratedValue
+	@Type(type = "uuid-char")
 	private UUID teamId;
 
 	@Column(unique = true)

@@ -43,7 +43,7 @@ public class PaymentDAOImpl implements PaymentDAO
 		}
 	}
 	
-	public List<Payment> getPayementTransactionByOrderId(int orderId) 
+	public List<Payment> getPayementTransactionByOrderId(UUID orderId) 
 	{
 		try
 		{
@@ -59,7 +59,7 @@ public class PaymentDAOImpl implements PaymentDAO
 		}
 	}
 
-	public Payment getPaymentTransactionById(int paymentId) 
+	public Payment getPaymentTransactionById(UUID paymentId) 
 	{
 		try
 		{
@@ -75,7 +75,7 @@ public class PaymentDAOImpl implements PaymentDAO
 		}
 	}	
 	
-	public long getPaymentTransactionExpirySeconds(int paymentId) 
+	public long getPaymentTransactionExpirySeconds(UUID paymentId) 
 	{	
 		long remainingSeconds = 0;
 		long expirySeconds = 0;

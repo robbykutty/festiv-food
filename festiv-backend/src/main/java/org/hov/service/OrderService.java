@@ -10,7 +10,7 @@ public interface OrderService
 	public UUID addOrder(Order order);
 	public boolean updateOrder(Order order);
 	public List<Order> getAllOrder();
-	public List<Order> getOrderByUser(int userId);
-	public List<Order> getOrderByTeam(int teamId);
-	public Order getOrderById(int orderId);
+	public List<Order> getOrderByUser(UUID userId);
+	public List<Order> getOrderByTeam(UUID teamId);
+	public Order getOrderById(UUID orderId);
 }

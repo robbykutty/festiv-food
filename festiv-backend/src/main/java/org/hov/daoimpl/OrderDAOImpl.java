@@ -80,7 +80,7 @@ public class OrderDAOImpl implements OrderDAO
 		}
 	}
 
-	public List<Order> getOrderByUser(int userId) 
+	public List<Order> getOrderByUser(UUID userId) 
 	{
 		try
 		{
@@ -96,7 +96,7 @@ public class OrderDAOImpl implements OrderDAO
 		}
 	}
 
-	public List<Order> getOrderByTeam(int teamId) 
+	public List<Order> getOrderByTeam(UUID teamId) 
 	{
 		try
 		{
@@ -112,7 +112,7 @@ public class OrderDAOImpl implements OrderDAO
 		}
 	}
 
-	public Order getOrderById(int orderId) 
+	public Order getOrderById(UUID orderId) 
 	{
 		try
 		{

@@ -1,10 +1,10 @@
-package org.hov.customlib;
+package org.hov.generators;
 
 import java.util.Random;
 
-public class CodeGen 
+public class CodeGenerator 
 {
-	public String generateCode(int length)
+	public String generate(int length)
 	{	
 		int no = 1;
 		String randomNumber = null;	

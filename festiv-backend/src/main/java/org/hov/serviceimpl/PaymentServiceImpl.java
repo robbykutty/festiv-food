@@ -21,19 +21,19 @@ public class PaymentServiceImpl implements PaymentService
 	}
 
 	@Override
-	public Payment getPaymentTransactionById(int paymentId) 
+	public Payment getPaymentTransactionById(UUID paymentId) 
 	{
 		return paymentService.getPaymentTransactionById(paymentId);
 	}
 
 	@Override
-	public List<Payment> getPayementTransactionByOrderId(int orderId) 
+	public List<Payment> getPayementTransactionByOrderId(UUID orderId) 
 	{
 		return paymentService.getPayementTransactionByOrderId(orderId);
 	}
 
 	@Override
-	public long getPaymentTransactionExpirySeconds(int paymentId) 
+	public long getPaymentTransactionExpirySeconds(UUID paymentId) 
 	{
 		return paymentService.getPaymentTransactionExpirySeconds(paymentId);
 	}

@@ -34,19 +34,19 @@ public class OrderServiceImpl implements OrderService
 	}
 
 	@Override
-	public List<Order> getOrderByUser(int userId) 
+	public List<Order> getOrderByUser(UUID userId) 
 	{
 		return orderDAO.getOrderByUser(userId);
 	}
 
 	@Override
-	public List<Order> getOrderByTeam(int teamId) 
+	public List<Order> getOrderByTeam(UUID teamId) 
 	{
 		return orderDAO.getOrderByTeam(teamId);
 	}
 
 	@Override
-	public Order getOrderById(int orderId) 
+	public Order getOrderById(UUID orderId) 
 	{
 		return orderDAO.getOrderById(orderId);
 	}

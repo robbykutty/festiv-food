@@ -28,13 +28,13 @@ public class ItemServiceImpl implements ItemService
 	}
 
 	@Override
-	public List<Item> getItemByTeam(int teamId) 
+	public List<Item> getItemByTeam(UUID teamId) 
 	{
 		return itemDAO.getItemByTeam(teamId);
 	}
 
 	@Override
-	public Item getItemById(int itemId) 
+	public Item getItemById(UUID itemId) 
 	{
 		return itemDAO.getItemById(itemId);
 	}
@@ -46,19 +46,19 @@ public class ItemServiceImpl implements ItemService
 	}
 
 	@Override
-	public boolean blockItemById(int itemId) 
+	public boolean blockItemById(UUID itemId) 
 	{
 		return itemDAO.blockItemById(itemId);
 	}
 
 	@Override
-	public boolean unblockItemById(int itemId) 
+	public boolean unblockItemById(UUID itemId) 
 	{
 		return itemDAO.unblockItemById(itemId);
 	}
 
 	@Override
-	public boolean expireItemById(int itemId) 
+	public boolean expireItemById(UUID itemId) 
 	{
 		return itemDAO.expireItemById(itemId);
 	}

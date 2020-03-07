@@ -27,19 +27,19 @@ public class TeamServiceImpl implements TeamService
 	}
 
 	@Override
-	public Team getTeamById(int teamId) 
+	public Team getTeamById(UUID teamId) 
 	{
 		return teamDAO.getTeamById(teamId);
 	}
 
 	@Override
-	public boolean activateTeamById(int teamId) 
+	public boolean activateTeamById(UUID teamId) 
 	{
 		return teamDAO.activateTeamById(teamId);
 	}
 
 	@Override
-	public boolean deactivateTeamById(int teamId) 
+	public boolean deactivateTeamById(UUID teamId) 
 	{
 		return teamDAO.deactivateTeamById(teamId);
 	}

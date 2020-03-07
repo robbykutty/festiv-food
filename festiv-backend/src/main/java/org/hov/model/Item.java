@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
@@ -20,6 +21,7 @@ public class Item
 {
 	@Id
 	@GeneratedValue
+	@Type(type = "uuid-char")
 	private UUID itemId;
 	
 	@Column
