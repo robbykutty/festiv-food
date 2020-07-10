@@ -1,115 +1,126 @@
 package org.hov.generators;
 
-import org.apache.commons.mail.Email;
-import org.hov.config.EmailConfig;
 import org.hov.enumerators.EmailType;
+import org.hov.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class EmailGenerator 
 {
-	String messageSubject;
-	String messageBody;
+	@Autowired
+	EmailService emailService;
+
+	public String subject;
+	public String body;
+	
+	public static String subject1;
+	public static String subject2;
+	public static String subject3;
+	public static String subject4;
+	public static String subject5;
+	public static String subject6;
+	public static String subject7;
+	public static String subject8;
+
+	public static String body1;
+	public static String body2;
+	public static String body3;
+	public static String body4;
+	public static String body5;
+	public static String body6;
+	public static String body7;
+	public static String body8;
+	
+	static
+	{
+		/* EMAIL SUBJECT TEMPLATE*/
+		subject1 = "Hi $XNAMEX$,Festive Foodie Email Verification.";
+		subject2 = "Hi $XNAMEX$,Festive Foodie Password Change Code.";
+		subject3 = "Hi $XNAMEX$,Festive Foodie Payment Recieved For Order# $XORDERIDX$";
+		subject4 = "Hi $XNAMEX$,Festive Foodie Order# $XORDERIDX$ Accepted";
+		subject5 = "Hi $XNAMEX$,Festive Foodie Order# $XORDERIDX$ Cancelled";
+		subject6 = "Hi $XNAMEX$,Festive Foodie Order# $XORDERIDX$ Prepared.";
+		subject7 = "Hi $XNAMEX$,Festive Foodie Order# $XORDERIDX$ Delivered.";
+		subject8 = "Hi $XNAMEX$,Festive Foodie Order# $XORDERIDX$ Refunded.";
+		
+		/* EMAIL BODY TEMPLATE */
+		body1 = "";
+		body2 = "";
+		body3 = "";
+		body4 = "";
+		body5 = "";
+		body6 = "";
+		body7 = "";
+		body8 = "";
+	}
+	
+	public boolean build(EmailType etyp)
+	{
+		subject = "";
+		body = "";
+		switch(etyp)
+		{
+			case VERIFICATION:
+				subject = subject1;
+				body = body1;
+				break;
+			case PASSWORD_CHANGE:
+				subject = subject2;
+				body = body2;
+				break;
+			case PAYMENT_COMPLETED:
+				subject = subject3;
+				body = body3;
+				break;
+			case ORDER_ACCEPTED:
+				subject = subject4;
+				body = body4;
+				break;
+			case ORDER_CANCELLED:
+				subject = subject5;
+				body = body5;
+				break;
+			case ORDER_PREPARED:
+				subject = subject6;
+				body = body6;
+				break;
+			case ORDER_DELIVERED:
+				subject = subject7;
+				body = body7;
+				break;
+			case ORDER_REFUNDED:
+				subject = subject8;
+				body = body8;
+				break;
+			default:
+				return false;
+		}
+		return true;
+	}
 	
 	public boolean send(EmailType emailType, 
-					    String 	  userName, 
-					    String    userEmail,
-					    Double    OrderAmount,
-					    String    OrderDescription,
+					    String    name, 
+					    String    email,
+					    Double    orderAmount,
+					    String    orderId,
+					    String    orderDescription,
 					    String    verificationCode)
 	{
-		messageSubject = "";
-		messageBody = "";
-		Email email;
-		
-		try 
+		try
 		{
-			email = EmailConfig.getEmailProperties();
-			email.addTo(userEmail);
-
-			switch(emailType)
+			if (build(emailType) && subject !="" && body !="")
 			{
-				case VERIFICATION:
-					messageSubject = "Hi " + userName + ". Email Verification from Festiv Foodie!";
-					messageBody = generateHTMLBody1(emailType, userName, verificationCode);
-					break;
-					
-				case PASSWORD_CHANGE:
-					messageSubject = "Hi " + userName + ". Password Change Code from Festive Foodie!";
-					messageBody = generateHTMLBody2(emailType, userName, verificationCode);
-					break;
-					
-				case PAYMENT_COMPLETED:
-					messageSubject = "Hi " + userName + ". Password Change Code from Festive Foodie!";
-					messageBody = generateHTMLBody3(emailType, userName, OrderAmount, OrderDescription);
-					break;
-					
-				case ORDER_ACCEPTED:
-					messageSubject = "Hi " + userName + ". Password Change Code from Festive Foodie!";
-					messageBody = generateHTMLBody4(emailType, userName, OrderAmount, OrderDescription);
-					break;
-
-				case ORDER_PREPARED:
-					messageSubject = "Hi " + userName + ". Password Change Code from Festive Foodie!";
-					messageBody = generateHTMLBody5(emailType, userName, OrderAmount, OrderDescription);
-					break;
-					
-				case ORDER_DELIVERED:
-					messageSubject = "Hi " + userName + ". Password Change Code from Festive Foodie!";
-					messageBody = generateHTMLBody6(emailType, userName, OrderAmount, OrderDescription);
-					
-				case ORDER_CANCELLED:
-					messageSubject = "Hi " + userName + ". Password Change Code from Festive Foodie!";
-					messageBody = generateHTMLBody7(emailType, userName, OrderAmount, OrderDescription);
-					break;
-					
-				default:
-					return false;
+				emailService.sendSimpleMail(email, subject, body);
+				return true;
 			}
-			
-			email.setSubject(messageSubject);
-			email.setMsg(messageBody);
-			
-			email.send();
-			return true;
+			else
+			{
+				return false;
+			}
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			return false;
+			return true;
 		}
-	}
-	
-	public String generateHTMLBody1(EmailType et, String un, String vc)
-	{
-		return messageBody;
-	}
-	
-	public String generateHTMLBody2(EmailType et, String un, String vc)
-	{
-		return messageBody;
-	}
-	
-	public String generateHTMLBody3(EmailType et, String un, double oa, String od)
-	{
-		return messageBody;
-	}
-	
-	public String generateHTMLBody4(EmailType et, String un, double oa, String od)
-	{
-		return messageBody;
-	}
-	
-	public String generateHTMLBody5(EmailType et, String un, double oa, String od)
-	{
-		return messageBody;
-	}
-	
-	public String generateHTMLBody6(EmailType et, String un, double oa, String od)
-	{
-		return messageBody;
-	}
-	
-	public String generateHTMLBody7(EmailType et, String un, double oa, String od)
-	{
-		return messageBody;
 	}
 }

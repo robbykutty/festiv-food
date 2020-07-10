@@ -19,7 +19,7 @@ public class MailTestCases
 	EmailService emailSevice;
 	
 	@Test
-	//@Ignore
+    @Ignore
 	public void testSpringMail()
 	{
 		assertEquals(true, emailSevice.sendSimpleMail("exdev.robin@gmail.com", 

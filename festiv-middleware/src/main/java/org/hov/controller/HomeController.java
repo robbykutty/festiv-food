@@ -1,7 +1,5 @@
 package org.hov.controller;
 
-import java.util.List;
-
 import org.hov.daoimpl.UserDAOImpl;
 import org.hov.model.User;
 import org.springframework.http.HttpStatus;
